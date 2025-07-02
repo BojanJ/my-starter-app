@@ -1,15 +1,35 @@
 import { useState } from "react";
+import {
+  BrowserRouter as Router,
+  Routes,
+  Route,
+  useNavigate,
+} from "react-router-dom";
 import reactLogo from "./assets/react.svg";
 import viteLogo from "/vite.svg";
 import "./App.css";
 import appConfig from "@/config/app.config";
 import { Button } from "@/components/ui/button";
+import HomePage from "./pages/HomePage";
+
+function NavigateButton() {
+  const navigate = useNavigate();
+  return (
+    <Button
+      onClick={() => {
+        navigate("/home");
+      }}
+    >
+      Go to Home
+    </Button>
+  );
+}
 
 function App() {
   const [count, setCount] = useState(0);
 
   return (
-    <>
+    <Router>
       <div>
         <a href="https://vitejs.dev" target="_blank">
           <img src={viteLogo} className="logo" alt="Vite logo" />
@@ -24,6 +44,7 @@ function App() {
         <Button onClick={() => setCount((count) => count + 1)}>
           count is {count}
         </Button>
+        <NavigateButton />
         <p>
           Edit <code>src/App.tsx</code> and save to test HMR
         </p>
@@ -34,7 +55,10 @@ function App() {
       <p className="footer-info">
         Developed by {appConfig.appAuthor} (v{appConfig.appVersion})
       </p>
-    </>
+      <Routes>
+        <Route path="/home" element={<HomePage />} />
+      </Routes>
+    </Router>
   );
 }
 
