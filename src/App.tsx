@@ -1,16 +1,11 @@
-import PWAInstallPrompt from "@/components/common/PWAInstallPrompt";
-import PWAUpdateNotification from "@/components/common/PWAUpdateNotification";
-import { ThemeToggle } from "@/components/common/ThemeToggle"; // Assuming you have this
-import { Button } from "@/components/ui/button";
-import { useTranslation } from "react-i18next";
-import { Link, Route, BrowserRouter as Router, Routes } from "react-router-dom";
-import "./styles/App.css";
-import AboutPage from "./pages/AboutPage";
-import DashboardPage from "./pages/DashboardPage";
-import HomePage from "./pages/HomePage";
-import LoginPage from "./pages/LoginPage";
-import NotFoundPage from "./pages/NotFoundPage";
-import PrivateRoute from "./routes/PrivateRoute";
+import PWAInstallPrompt from '@/components/common/PWAInstallPrompt';
+import PWAUpdateNotification from '@/components/common/PWAUpdateNotification';
+import { ThemeToggle } from '@/components/common/ThemeToggle'; // Assuming you have this
+import { Button } from '@/components/ui/button';
+import { useTranslation } from 'react-i18next';
+import { Link, HashRouter as Router } from 'react-router-dom';
+import './styles/App.css';
+import AppRoutes from './routes/AppRoutes';
 
 function App() {
   const { t, i18n } = useTranslation();
@@ -21,63 +16,39 @@ function App() {
 
   return (
     <Router>
-      <div className="flex flex-col min-h-screen bg-gray-50 dark:bg-gray-900 text-gray-900 dark:text-gray-50">
-        <nav className="p-4 bg-blue-600 text-white flex justify-between items-center">
-          <div className="space-x-4">
-            <Link to="/" className="hover:underline">
-              {t("nav.home")}
+      <div className='flex flex-col min-h-screen bg-gray-50 dark:bg-gray-900 text-gray-900 dark:text-gray-50'>
+        <nav className='p-4 bg-blue-600 text-white flex justify-between items-center'>
+          <div className='space-x-4'>
+            <Link to='/' className='hover:underline'>
+              {t('nav.home')}
             </Link>
-            <Link to="/about" className="hover:underline">
-              {t("nav.about")}
+            <Link to='/about' className='hover:underline'>
+              {t('nav.about')}
             </Link>
-            <Link to="/dashboard" className="hover:underline">
-              {t("nav.dashboard")}
-            </Link>{" "}
+            <Link to='/dashboard' className='hover:underline'>
+              {t('nav.dashboard')}
+            </Link>
             {/* Example protected link */}
           </div>
-          <div className="flex items-center space-x-2">
-            <Button
-              variant="outline"
-              size="sm"
-              onClick={() => changeLanguage("en")}
-            >
+          <div className='flex items-center space-x-2'>
+            <Button variant='outline' size='sm' onClick={() => changeLanguage('en')}>
               EN
             </Button>
-            <Button
-              variant="outline"
-              size="sm"
-              onClick={() => changeLanguage("es")}
-            >
+            <Button variant='outline' size='sm' onClick={() => changeLanguage('es')}>
               ES
             </Button>
-            <Button
-              variant="outline"
-              size="sm"
-              onClick={() => changeLanguage("de")}
-            >
+            <Button variant='outline' size='sm' onClick={() => changeLanguage('de')}>
               DE
             </Button>
             <ThemeToggle /> {/* Your dark mode toggle */}
           </div>
         </nav>
 
-        <main className="flex-grow p-8">
-          <Routes>
-            <Route path="/" element={<HomePage />} />
-            <Route path="/about" element={<AboutPage />} />
-            <Route path="/login" element={<LoginPage />} />
-
-            {/* Protected Routes */}
-            <Route element={<PrivateRoute />}>
-              <Route path="/dashboard" element={<DashboardPage />} />
-              {/* Add more protected routes here */}
-            </Route>
-
-            <Route path="*" element={<NotFoundPage />} />
-          </Routes>
+        <main className='flex-grow p-8'>
+          <AppRoutes />
         </main>
 
-        <footer className="p-4 bg-gray-200 dark:bg-gray-800 text-center text-sm">
+        <footer className='p-4 bg-gray-200 dark:bg-gray-800 text-center text-sm'>
           &copy; {new Date().getFullYear()} React Pro Starter.
         </footer>
 
