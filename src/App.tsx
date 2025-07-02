@@ -2,6 +2,8 @@ import PWAInstallPrompt from '@/components/common/PWAInstallPrompt';
 import PWAUpdateNotification from '@/components/common/PWAUpdateNotification';
 import { ThemeToggle } from '@/components/common/ThemeToggle'; // Assuming you have this
 import { Button } from '@/components/ui/button';
+import { useAuthStore } from '@/stores/authStore';
+import { useThemeStore } from '@/stores/themeStore';
 import { useTranslation } from 'react-i18next';
 import { Link, HashRouter as Router } from 'react-router-dom';
 import './styles/App.css';
@@ -9,6 +11,8 @@ import AppRoutes from './routes/AppRoutes';
 
 function App() {
   const { t, i18n } = useTranslation();
+  const { theme } = useThemeStore();
+  const { isAuthenticated, userProfile, login, logout } = useAuthStore();
 
   const changeLanguage = (lng: string) => {
     i18n.changeLanguage(lng);
@@ -16,7 +20,8 @@ function App() {
 
   return (
     <Router>
-      <div className='flex flex-col min-h-screen bg-gray-50 dark:bg-gray-900 text-gray-900 dark:text-gray-50'>
+      <div
+        className={`flex flex-col min-h-screen ${theme === 'dark' ? 'dark' : ''} bg-gray-50 dark:bg-gray-900 text-gray-900 dark:text-gray-50`}>
         <nav className='p-4 bg-blue-600 text-white flex justify-between items-center'>
           <div className='space-x-4'>
             <Link to='/' className='hover:underline'>
@@ -31,6 +36,21 @@ function App() {
             {/* Example protected link */}
           </div>
           <div className='flex items-center space-x-2'>
+            {isAuthenticated ? (
+              <>
+                <span>{userProfile?.name}</span>
+                <Button variant='outline' size='sm' onClick={() => logout()}>
+                  {t('auth.logout')}
+                </Button>
+              </>
+            ) : (
+              <Button
+                variant='outline'
+                size='sm'
+                onClick={() => login({ name: 'John Doe', email: 'john.doe@example.com' })}>
+                {t('auth.login')}
+              </Button>
+            )}
             <Button variant='outline' size='sm' onClick={() => changeLanguage('en')}>
               EN
             </Button>
