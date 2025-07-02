@@ -12,13 +12,12 @@ interface AppConfig {
 }
 
 const appConfig: AppConfig = {
-  appName: "React Pro Starter",
-  appDescription:
-    "A professional React starter template for modern web applications.",
-  appShortName: "RPS",
-  appVersion: "1.0.0",
-  appAuthor: "Bojan Janevski",
-  appUrl: "https://your-domain.com", // This should be your deployed app URL
+  appName: 'React Pro Starter',
+  appDescription: 'A professional React starter template for modern web applications.',
+  appShortName: 'RPS',
+  appVersion: '1.0.0',
+  appAuthor: 'Bojan Janevski',
+  appUrl: 'https://your-domain.com', // This should be your deployed app URL
 };
 
 export default appConfig;

@@ -1,12 +1,12 @@
-import react from "@vitejs/plugin-react";
-import path from "path"; // Needed for aliases
-import { defineConfig } from "vite";
+import react from '@vitejs/plugin-react';
+import path from 'path'; // Needed for aliases
+import { defineConfig } from 'vite';
 
 // Import your app configuration
-import tailwindcss from "@tailwindcss/vite";
-import appConfig from "./src/config/app.config";
-import { VitePWA } from "vite-plugin-pwa"; // Import VitePWA
-import pwaIcons from "./public/icons/icons.json";
+import tailwindcss from '@tailwindcss/vite';
+import appConfig from './src/config/app.config';
+import { VitePWA } from 'vite-plugin-pwa'; // Import VitePWA
+import pwaIcons from './public/icons/icons.json';
 
 // https://vitejs.dev/config/
 export default defineConfig({
@@ -14,37 +14,36 @@ export default defineConfig({
     react(),
     tailwindcss(),
     VitePWA({
-      registerType: "autoUpdate", // Automatically update the service worker
+      registerType: 'autoUpdate', // Automatically update the service worker
       devOptions: {
         enabled: true, // Enable PWA in development mode for easier debugging
-        type: "module", // Use module service worker (recommended)
+        type: 'module', // Use module service worker (recommended)
       },
       manifest: {
         name: appConfig.appName,
         short_name: appConfig.appShortName,
         description: appConfig.appDescription,
-        theme_color: "#ffffff", // Your app's primary theme color
-        background_color: "#ffffff", // Background color for the splash screen
-        display: "standalone", // Makes the app feel more native (hides browser UI)
-        start_url: "/", // The URL where the PWA will start
-        scope: "/", // Scope of the PWA (what URLs it controls)
+        theme_color: '#ffffff', // Your app's primary theme color
+        background_color: '#ffffff', // Background color for the splash screen
+        display: 'standalone', // Makes the app feel more native (hides browser UI)
+        start_url: '/', // The URL where the PWA will start
+        scope: '/', // Scope of the PWA (what URLs it controls)
         icons: pwaIcons.icons.map((icon: { src: string; sizes: string }) => ({
           ...icon,
           src: `/icons/${icon.src}`,
-          type: "image/png",
+          type: 'image/png',
         })), // Your generated icons will go here
       },
       workbox: {
         // Options for Workbox, which generates the service worker
-        globPatterns: ["**/*.{js,css,html,ico,png,svg,webp,woff2,json,xml}"], // Cache these file types
+        globPatterns: ['**/*.{js,css,html,ico,png,svg,webp,woff2,json,xml}'], // Cache these file types
         // Add runtime caching for API calls (important for offline data)
         runtimeCaching: [
           {
-            urlPattern: ({ url }) =>
-              url.origin === "https://jsonplaceholder.typicode.com", // Match your API origin
-            handler: "StaleWhileRevalidate", // Serve from cache while revalidating in background
+            urlPattern: ({ url }) => url.origin === 'https://jsonplaceholder.typicode.com', // Match your API origin
+            handler: 'StaleWhileRevalidate', // Serve from cache while revalidating in background
             options: {
-              cacheName: "api-cache",
+              cacheName: 'api-cache',
               expiration: {
                 maxEntries: 50, // Max number of API responses to cache
                 maxAgeSeconds: 60 * 60 * 24 * 7, // Cache for 7 days
@@ -57,9 +56,9 @@ export default defineConfig({
           {
             // @ts-ignore
             urlPattern: ({ url }) => url.origin !== self.location.origin, // Cache third-party assets (e.g., Google Fonts, CDN)
-            handler: "CacheFirst", // Prioritize cache for these assets
+            handler: 'CacheFirst', // Prioritize cache for these assets
             options: {
-              cacheName: "static-assets-cache",
+              cacheName: 'static-assets-cache',
               expiration: {
                 maxEntries: 60,
                 maxAgeSeconds: 60 * 60 * 24 * 30, // Cache for 30 days
@@ -73,20 +72,18 @@ export default defineConfig({
         // Optional: Denylist specific routes from being navigated to offline if they must be online
         // navigateFallbackDenylist: [/\/api\//],
       },
-      includeAssets: ["**/*"],
+      includeAssets: ['**/*'],
     }),
   ],
   // Define global constant replacements
   define: {
-    "import.meta.env.VITE_APP_NAME": JSON.stringify(appConfig.appName),
-    "import.meta.env.VITE_APP_DESCRIPTION": JSON.stringify(
-      appConfig.appDescription
-    ),
+    'import.meta.env.VITE_APP_NAME': JSON.stringify(appConfig.appName),
+    'import.meta.env.VITE_APP_DESCRIPTION': JSON.stringify(appConfig.appDescription),
     // You can expose other config values here if needed in index.html or globally
   },
   resolve: {
     alias: {
-      "@": path.resolve(__dirname, "./src"),
+      '@': path.resolve(__dirname, './src'),
     },
   },
 });
