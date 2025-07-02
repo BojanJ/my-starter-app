@@ -1,11 +1,10 @@
-import React from 'react';
+import { SectionCards } from '@/components/section-cards';
 
-const DashboardPage: React.FC = () => {
+export default function DashboardPage() {
   return (
-    <div>
-      <h1>Dashboard</h1>
-    </div>
+    <>
+      <SectionCards />
+      <div className='px-4 lg:px-6'></div>
+    </>
   );
-};
-
-export default DashboardPage;
+}

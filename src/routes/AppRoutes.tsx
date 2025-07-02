@@ -14,7 +14,7 @@ const AboutPageWithLayout = withPageLayout(AboutPage, { layoutType: 'general' })
 const LoginPageWithLayout = withPageLayout(LoginPage, { layoutType: 'general' });
 const DashboardPageWithLayout = withPageLayout(DashboardPage, {
   layoutType: 'dashboard',
-  isPrivate: true,
+  isPrivate: false,
 });
 const NotFoundPageWithLayout = withPageLayout(NotFoundPage, { layoutType: 'general' });
 
