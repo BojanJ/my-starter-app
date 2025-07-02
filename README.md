@@ -92,7 +92,7 @@ Translation files are located in `src/locales`. The configuration is in `src/i18
 
 ## 🤝 Contributing
 
-Contributions, issues, and feature requests are welcome! Feel free to check the [issues page](https://github.com/BojanJ/react-pro-starter/issues).
+Contributions, issues, and feature requests are welcome! Feel free to check the [issues page](https://github.com/BojanJ/my-starter-app/issues).
 
 ## 📄 License
 
