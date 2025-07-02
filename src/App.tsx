@@ -7,8 +7,19 @@ import { useTranslation } from 'react-i18next';
 import { Link, HashRouter as Router } from 'react-router-dom';
 import './styles/App.css';
 import AppRoutes from './routes/AppRoutes';
+import { setDayjsLocale } from '@/utils/date'; // Import the locale setter
+import { useEffect } from 'react';
 
 function App() {
+  const { i18n } = useTranslation();
+
+  useEffect(() => {
+    setDayjsLocale(i18n.language);
+    i18n.on('languageChanged', (lng: string) => {
+      setDayjsLocale(lng);
+    });
+  }, [i18n]);
+
   return (
     <Router>
       <AppContent />
