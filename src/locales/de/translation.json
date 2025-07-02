@@ -1,0 +1,28 @@
+{
+  "welcome": "Willkommen bei {{appName}}!",
+  "greeting": "Hallo, {{name}}!",
+  "language_selector": "Sprache auswählen",
+  "nav": {
+    "home": "Startseite",
+    "about": "Über",
+    "dashboard": "Dashboard"
+  },
+  "theme": {
+    "toggle": "Theme wechseln",
+    "light": "Hell",
+    "dark": "Dunkel",
+    "system": "System"
+  },
+  "pwa": {
+    "install_prompt_title": "App installieren",
+    "install_prompt_description": "Fügen Sie {{appName}} zu Ihrem Startbildschirm hinzu, um schnellen Zugriff und Offline-Nutzung zu erhalten!",
+    "install_button": "Jetzt installieren",
+    "new_version_available_title": "Neue Version verfügbar!",
+    "new_version_available_description": "Eine neue Version der App ist verfügbar. Bitte aktualisieren Sie, um die neuesten Funktionen und Fehlerbehebungen zu erhalten.",
+    "refresh_button": "Aktualisieren"
+  },
+  "common": {
+    "cancel": "Abbrechen",
+    "dismiss": "Verwerfen"
+  }
+}

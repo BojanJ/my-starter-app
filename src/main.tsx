@@ -5,6 +5,7 @@ import App from "./App.tsx";
 import { PersistQueryClientProvider } from "@tanstack/react-query-persist-client";
 import { queryClient, persister } from "./lib/queryClient";
 import { registerSW } from "virtual:pwa-register";
+import "./lib/i18n";
 
 registerSW({
   onNeedRefresh() {

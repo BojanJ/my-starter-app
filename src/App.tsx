@@ -11,6 +11,8 @@ import "./App.css";
 import appConfig from "@/config/app.config";
 import { Button } from "@/components/ui/button";
 import HomePage from "./pages/HomePage";
+import { useTranslation } from "react-i18next";
+import LanguageSwitcher from "./components/LanguageSwitcher";
 
 function NavigateButton() {
   const navigate = useNavigate();
@@ -27,6 +29,7 @@ function NavigateButton() {
 
 function App() {
   const [count, setCount] = useState(0);
+  const { t } = useTranslation();
 
   return (
     <Router>
@@ -39,8 +42,10 @@ function App() {
         </a>
       </div>
       <h1>{appConfig.appName}</h1>
+      <h2>{t("welcome")}</h2>
       <p>{appConfig.appDescription}</p>
       <div className="card">
+        <LanguageSwitcher />
         <Button onClick={() => setCount((count) => count + 1)}>
           count is {count}
         </Button>

@@ -1,0 +1,28 @@
+{
+  "welcome": "¡Bienvenido a {{appName}}!",
+  "greeting": "¡Hola, {{name}}!",
+  "language_selector": "Seleccionar idioma",
+  "nav": {
+    "home": "Inicio",
+    "about": "Acerca de",
+    "dashboard": "Panel de control"
+  },
+  "theme": {
+    "toggle": "Alternar tema",
+    "light": "Claro",
+    "dark": "Oscuro",
+    "system": "Sistema"
+  },
+  "pwa": {
+    "install_prompt_title": "Instalar aplicación",
+    "install_prompt_description": "¡Añade {{appName}} a tu pantalla de inicio para un acceso rápido y uso sin conexión!",
+    "install_button": "Instalar ahora",
+    "new_version_available_title": "¡Nueva versión disponible!",
+    "new_version_available_description": "Una nueva versión de la aplicación está disponible. Por favor, actualiza para obtener las últimas características y correcciones.",
+    "refresh_button": "Actualizar"
+  },
+  "common": {
+    "cancel": "Cancelar",
+    "dismiss": "Descartar"
+  }
+}

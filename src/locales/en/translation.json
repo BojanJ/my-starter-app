@@ -1,0 +1,28 @@
+{
+  "welcome": "Welcome to {{appName}}!",
+  "greeting": "Hello, {{name}}!",
+  "language_selector": "Select Language",
+  "nav": {
+    "home": "Home",
+    "about": "About",
+    "dashboard": "Dashboard"
+  },
+  "theme": {
+    "toggle": "Toggle theme",
+    "light": "Light",
+    "dark": "Dark",
+    "system": "System"
+  },
+  "pwa": {
+    "install_prompt_title": "Install App",
+    "install_prompt_description": "Add {{appName}} to your home screen for quick access and offline use!",
+    "install_button": "Install Now",
+    "new_version_available_title": "New Version Available!",
+    "new_version_available_description": "A new version of the app is available. Please refresh to get the latest features and bug fixes.",
+    "refresh_button": "Refresh"
+  },
+  "common": {
+    "cancel": "Cancel",
+    "dismiss": "Dismiss"
+  }
+}
