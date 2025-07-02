@@ -1,9 +1,9 @@
-import React from 'react';
+import LoginForm from '@/components/forms/LoginForm';
 
-const LoginPage: React.FC = () => {
+const LoginPage = () => {
   return (
-    <div>
-      <h1>Login Page</h1>
+    <div className='flex items-center justify-center min-h-screen bg-gray-100 dark:bg-gray-900'>
+      <LoginForm />
     </div>
   );
 };
