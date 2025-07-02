@@ -1,13 +1,14 @@
-import { defineConfig } from "vite";
 import react from "@vitejs/plugin-react";
 import path from "path"; // Needed for aliases
+import { defineConfig } from "vite";
 
 // Import your app configuration
+import tailwindcss from "@tailwindcss/vite";
 import appConfig from "./src/config/app.config";
 
 // https://vitejs.dev/config/
 export default defineConfig({
-  plugins: [react()],
+  plugins: [react(), tailwindcss()],
   // Define global constant replacements
   define: {
     "import.meta.env.VITE_APP_NAME": JSON.stringify(appConfig.appName),
