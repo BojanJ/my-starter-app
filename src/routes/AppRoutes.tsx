@@ -1,25 +1,31 @@
 import { Route, Routes } from 'react-router-dom';
-import AboutPage from '../pages/AboutPage';
-import DashboardPage from '../pages/DashboardPage';
-import HomePage from '../pages/HomePage';
-import LoginPage from '../pages/LoginPage';
-import NotFoundPage from '../pages/NotFoundPage';
-import PrivateRoute from './PrivateRoute';
+import { withPageLayout } from '@/hocs/withPageLayout';
+
+// Import Pages
+import HomePage from '@/pages/HomePage';
+import AboutPage from '@/pages/AboutPage';
+import LoginPage from '@/pages/LoginPage';
+import DashboardPage from '@/pages/DashboardPage';
+import NotFoundPage from '@/pages/NotFoundPage';
+
+// Wrap pages with the HOC
+const HomePageWithLayout = withPageLayout(HomePage, { layoutType: 'general' });
+const AboutPageWithLayout = withPageLayout(AboutPage, { layoutType: 'general' });
+const LoginPageWithLayout = withPageLayout(LoginPage, { layoutType: 'general' });
+const DashboardPageWithLayout = withPageLayout(DashboardPage, {
+  layoutType: 'dashboard',
+  isPrivate: true,
+});
+const NotFoundPageWithLayout = withPageLayout(NotFoundPage, { layoutType: 'general' });
 
 function AppRoutes() {
   return (
     <Routes>
-      <Route path='/' element={<HomePage />} />
-      <Route path='/about' element={<AboutPage />} />
-      <Route path='/login' element={<LoginPage />} />
-
-      {/* Protected Routes */}
-      <Route element={<PrivateRoute />}>
-        <Route path='/dashboard' element={<DashboardPage />} />
-        {/* Add more protected routes here */}
-      </Route>
-
-      <Route path='*' element={<NotFoundPage />} />
+      <Route path='/' element={<HomePageWithLayout />} />
+      <Route path='/about' element={<AboutPageWithLayout />} />
+      <Route path='/login' element={<LoginPageWithLayout />} />
+      <Route path='/dashboard' element={<DashboardPageWithLayout />} />
+      <Route path='*' element={<NotFoundPageWithLayout />} />
     </Routes>
   );
 }

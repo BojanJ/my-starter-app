@@ -1,11 +1,18 @@
 {
   "welcome": "¡Bienvenido a {{appName}}!",
-  "greeting": "¡Hola, {{name}}!",
+  "greeting": "¡Hola, {{name}}! Esta es tu aplicación.",
   "language_selector": "Seleccionar idioma",
   "nav": {
     "home": "Inicio",
     "about": "Acerca de",
-    "dashboard": "Panel de control"
+    "dashboard": "Panel de control",
+    "login": "Iniciar sesión",
+    "settings": "Configuración",
+    "users": "Usuarios",
+    "logout": "Cerrar sesión"
+  },
+  "footer": {
+    "all_rights_reserved": "Todos los derechos reservados."
   },
   "theme": {
     "toggle": "Alternar tema",

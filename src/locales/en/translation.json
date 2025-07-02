@@ -1,11 +1,18 @@
 {
   "welcome": "Welcome to {{appName}}!",
-  "greeting": "Hello, {{name}}!",
+  "greeting": "Hello, {{name}}! This is your application.",
   "language_selector": "Select Language",
   "nav": {
     "home": "Home",
     "about": "About",
-    "dashboard": "Dashboard"
+    "dashboard": "Dashboard",
+    "login": "Login",
+    "settings": "Settings",
+    "users": "Users",
+    "logout": "Logout"
+  },
+  "footer": {
+    "all_rights_reserved": "All rights reserved."
   },
   "theme": {
     "toggle": "Toggle theme",

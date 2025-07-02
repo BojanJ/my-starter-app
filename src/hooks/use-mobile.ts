@@ -1,19 +1,11 @@
-import * as React from 'react';
+// src/hooks/useIsMobile.ts
+import { useMediaQuery } from 'react-responsive';
 
-const MOBILE_BREAKPOINT = 768;
+// Define your mobile breakpoint. This should align with your Tailwind CSS 'md' breakpoint typically.
+const MOBILE_BREAKPOINT = 768; // Anything less than 768px wide will be considered mobile.
 
-export function useIsMobile() {
-  const [isMobile, setIsMobile] = React.useState<boolean | undefined>(undefined);
-
-  React.useEffect(() => {
-    const mql = window.matchMedia(`(max-width: ${MOBILE_BREAKPOINT - 1}px)`);
-    const onChange = () => {
-      setIsMobile(window.innerWidth < MOBILE_BREAKPOINT);
-    };
-    mql.addEventListener('change', onChange);
-    setIsMobile(window.innerWidth < MOBILE_BREAKPOINT);
-    return () => mql.removeEventListener('change', onChange);
-  }, []);
-
-  return !!isMobile;
-}
+export const useIsMobile = () => {
+  // isMobile will be true if the screen width is less than MOBILE_BREAKPOINT
+  const isMobile = useMediaQuery({ maxWidth: MOBILE_BREAKPOINT - 1 });
+  return isMobile;
+};
