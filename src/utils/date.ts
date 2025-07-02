@@ -4,6 +4,7 @@ import relativeTime from 'dayjs/plugin/relativeTime';
 import localizedFormat from 'dayjs/plugin/localizedFormat';
 import 'dayjs/locale/en'; // Import English locale
 import 'dayjs/locale/es'; // Import Spanish locale
+import 'dayjs/locale/de'; // Import German locale
 // Add other locales as needed
 
 // Extend Day.js with necessary plugins
