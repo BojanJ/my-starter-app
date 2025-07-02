@@ -1,15 +1,23 @@
 import { create } from 'zustand';
 
+interface UserData {
+  id: string;
+  email: string;
+  name: string;
+}
+
 interface AuthState {
   isAuthenticated: boolean;
-  userProfile: { name: string; email: string } | null;
-  login: (userProfile: { name: string; email: string }) => void;
-  logout: () => void;
+  user: UserData | null;
+  isLoading: boolean; // Add loading state for initial check
+  setAuth: (user: UserData | null) => void;
+  setLoading: (loading: boolean) => void;
 }
 
 export const useAuthStore = create<AuthState>((set) => ({
   isAuthenticated: false,
-  userProfile: null,
-  login: (userProfile) => set({ isAuthenticated: true, userProfile }),
-  logout: () => set({ isAuthenticated: false, userProfile: null }),
+  user: null,
+  isLoading: true, // Start as true for initial check
+  setAuth: (user) => set({ isAuthenticated: !!user, user }),
+  setLoading: (loading) => set({ isLoading: loading }),
 }));

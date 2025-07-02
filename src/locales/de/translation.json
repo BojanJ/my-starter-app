@@ -24,5 +24,18 @@
   "common": {
     "cancel": "Abbrechen",
     "dismiss": "Verwerfen"
+  },
+  "auth": {
+    "login": "Anmelden",
+    "logout": "Abmelden",
+    "register": "Registrieren",
+    "email": "E-Mail",
+    "password": "Passwort",
+    "confirm_password": "Passwort bestätigen",
+    "forgot_password": "Passwort vergessen?",
+    "reset_password": "Passwort zurücksetzen",
+    "send_reset_link": "Link zum Zurücksetzen senden",
+    "welcome_back": "Willkommen zurück, {{name}}!",
+    "create_account": "Ein Konto erstellen"
   }
 }

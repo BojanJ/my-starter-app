@@ -5,6 +5,7 @@ import { Label } from '@/components/ui/label'; // Shadcn Label
 import { useForm } from '@tanstack/react-form';
 import React from 'react';
 import { z } from 'zod';
+import { useAuth } from '@/hooks/useAuth';
 
 const loginSchema = z.object({
   email: z.string().email('Invalid email address'),
@@ -12,6 +13,7 @@ const loginSchema = z.object({
 });
 
 function LoginForm() {
+  const { login } = useAuth();
   const form = useForm({
     defaultValues: {
       email: '',
@@ -19,8 +21,7 @@ function LoginForm() {
     },
     onSubmit: async ({ value }) => {
       // Do something with form data (e.g., call authentication API)
-      console.log('Login form submitted:', value);
-      alert(`Attempting login for: ${value.email}`);
+      login(value);
     },
   });
 
