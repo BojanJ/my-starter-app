@@ -1,10 +1,10 @@
-import PWAInstallPrompt from "@/components/PWAInstallPrompt";
-import PWAUpdateNotification from "@/components/PWAUpdateNotification";
-import { ThemeToggle } from "@/components/ThemeToggle"; // Assuming you have this
+import PWAInstallPrompt from "@/components/common/PWAInstallPrompt";
+import PWAUpdateNotification from "@/components/common/PWAUpdateNotification";
+import { ThemeToggle } from "@/components/common/ThemeToggle"; // Assuming you have this
 import { Button } from "@/components/ui/button";
 import { useTranslation } from "react-i18next";
 import { Link, Route, BrowserRouter as Router, Routes } from "react-router-dom";
-import "./App.css";
+import "./styles/App.css";
 import AboutPage from "./pages/AboutPage";
 import DashboardPage from "./pages/DashboardPage";
 import HomePage from "./pages/HomePage";
