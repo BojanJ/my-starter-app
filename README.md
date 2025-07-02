@@ -80,7 +80,7 @@ src/
 
 ### Theming
 
-The project uses Tailwind CSS for styling. You can customize the theme by editing `tailwind.config.js` and `src/styles/index.css`. Dark mode is enabled by default and can be toggled using the theme switcher component.
+The project uses Tailwind CSS for styling. You can customize the theme by editing `tailwind.config.js` and `src/index.css`. Dark mode is enabled by default and can be toggled using the theme switcher component.
 
 ### Components
 
