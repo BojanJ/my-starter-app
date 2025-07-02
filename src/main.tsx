@@ -6,13 +6,16 @@ import { PersistQueryClientProvider } from '@tanstack/react-query-persist-client
 import { queryClient, persister } from './queryClient';
 import './i18n';
 import ErrorBoundary from './components/common/ErrorBoundary';
+import { ThemeProvider } from './components/theme-provider';
 
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
-    <PersistQueryClientProvider client={queryClient} persistOptions={{ persister }}>
-      <ErrorBoundary>
-        <App />
-      </ErrorBoundary>
-    </PersistQueryClientProvider>
+    <ThemeProvider defaultTheme='system' storageKey='vite-ui-theme'>
+      <PersistQueryClientProvider client={queryClient} persistOptions={{ persister }}>
+        <ErrorBoundary>
+          <App />
+        </ErrorBoundary>
+      </PersistQueryClientProvider>
+    </ThemeProvider>
   </StrictMode>
 );

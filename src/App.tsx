@@ -1,9 +1,8 @@
 import PWAInstallPrompt from '@/components/common/PWAInstallPrompt';
 import PWAUpdateNotification from '@/components/common/PWAUpdateNotification';
-import { ThemeToggle } from '@/components/common/ThemeToggle'; // Assuming you have this
+import { ThemeToggle } from '@/components/ThemeToggle';
 import { Button } from '@/components/ui/button';
 import { useAuthStore } from '@/stores/authStore';
-import { useThemeStore } from '@/stores/themeStore';
 import { useTranslation } from 'react-i18next';
 import { Link, HashRouter as Router } from 'react-router-dom';
 import './styles/App.css';
@@ -11,7 +10,6 @@ import AppRoutes from './routes/AppRoutes';
 
 function App() {
   const { t, i18n } = useTranslation();
-  const { theme } = useThemeStore();
   const { isAuthenticated, userProfile, login, logout } = useAuthStore();
 
   const changeLanguage = (lng: string) => {
@@ -21,7 +19,7 @@ function App() {
   return (
     <Router>
       <div
-        className={`flex flex-col min-h-screen ${theme === 'dark' ? 'dark' : ''} bg-gray-50 dark:bg-gray-900 text-gray-900 dark:text-gray-50`}>
+        className={`flex flex-col min-h-screen bg-gray-50 dark:bg-gray-900 text-gray-900 dark:text-gray-50`}>
         <nav className='p-4 bg-blue-600 text-white flex justify-between items-center'>
           <div className='space-x-4'>
             <Link to='/' className='hover:underline'>
