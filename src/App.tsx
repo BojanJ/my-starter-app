@@ -1,68 +1,90 @@
-import { useState } from "react";
-import {
-  BrowserRouter as Router,
-  Routes,
-  Route,
-  useNavigate,
-} from "react-router-dom";
-import reactLogo from "./assets/react.svg";
-import viteLogo from "/vite.svg";
-import "./App.css";
-import appConfig from "@/config/app.config";
+import PWAInstallPrompt from "@/components/PWAInstallPrompt";
+import PWAUpdateNotification from "@/components/PWAUpdateNotification";
+import { ThemeToggle } from "@/components/ThemeToggle"; // Assuming you have this
 import { Button } from "@/components/ui/button";
-import HomePage from "./pages/HomePage";
 import { useTranslation } from "react-i18next";
-import LanguageSwitcher from "./components/LanguageSwitcher";
-
-function NavigateButton() {
-  const navigate = useNavigate();
-  return (
-    <Button
-      onClick={() => {
-        navigate("/home");
-      }}
-    >
-      Go to Home
-    </Button>
-  );
-}
+import { Link, Route, BrowserRouter as Router, Routes } from "react-router-dom";
+import "./App.css";
+import AboutPage from "./pages/AboutPage";
+import DashboardPage from "./pages/DashboardPage";
+import HomePage from "./pages/HomePage";
+import LoginPage from "./pages/LoginPage";
+import NotFoundPage from "./pages/NotFoundPage";
+import PrivateRoute from "./routes/PrivateRoute";
 
 function App() {
-  const [count, setCount] = useState(0);
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
+
+  const changeLanguage = (lng: string) => {
+    i18n.changeLanguage(lng);
+  };
 
   return (
     <Router>
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
+      <div className="flex flex-col min-h-screen bg-gray-50 dark:bg-gray-900 text-gray-900 dark:text-gray-50">
+        <nav className="p-4 bg-blue-600 text-white flex justify-between items-center">
+          <div className="space-x-4">
+            <Link to="/" className="hover:underline">
+              {t("nav.home")}
+            </Link>
+            <Link to="/about" className="hover:underline">
+              {t("nav.about")}
+            </Link>
+            <Link to="/dashboard" className="hover:underline">
+              {t("nav.dashboard")}
+            </Link>{" "}
+            {/* Example protected link */}
+          </div>
+          <div className="flex items-center space-x-2">
+            <Button
+              variant="outline"
+              size="sm"
+              onClick={() => changeLanguage("en")}
+            >
+              EN
+            </Button>
+            <Button
+              variant="outline"
+              size="sm"
+              onClick={() => changeLanguage("es")}
+            >
+              ES
+            </Button>
+            <Button
+              variant="outline"
+              size="sm"
+              onClick={() => changeLanguage("de")}
+            >
+              DE
+            </Button>
+            <ThemeToggle /> {/* Your dark mode toggle */}
+          </div>
+        </nav>
+
+        <main className="flex-grow p-8">
+          <Routes>
+            <Route path="/" element={<HomePage />} />
+            <Route path="/about" element={<AboutPage />} />
+            <Route path="/login" element={<LoginPage />} />
+
+            {/* Protected Routes */}
+            <Route element={<PrivateRoute />}>
+              <Route path="/dashboard" element={<DashboardPage />} />
+              {/* Add more protected routes here */}
+            </Route>
+
+            <Route path="*" element={<NotFoundPage />} />
+          </Routes>
+        </main>
+
+        <footer className="p-4 bg-gray-200 dark:bg-gray-800 text-center text-sm">
+          &copy; {new Date().getFullYear()} React Pro Starter.
+        </footer>
+
+        {/* PWA Prompts - Place them globally */}
+        <PWAInstallPrompt />
+        <PWAUpdateNotification />
       </div>
-      <h1>{appConfig.appName}</h1>
-      <h2>{t("welcome")}</h2>
-      <p>{appConfig.appDescription}</p>
-      <div className="card">
-        <LanguageSwitcher />
-        <Button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </Button>
-        <NavigateButton />
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-      <p className="footer-info">
-        Developed by {appConfig.appAuthor} (v{appConfig.appVersion})
-      </p>
-      <Routes>
-        <Route path="/home" element={<HomePage />} />
-      </Routes>
     </Router>
   );
 }
