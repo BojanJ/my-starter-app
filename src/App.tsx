@@ -27,7 +27,7 @@ function App() {
 function AppContent() {
   return (
     <>
-      <main className=''>
+      <main className='min-h-screen'>
         <AppRoutes />
       </main>
 
