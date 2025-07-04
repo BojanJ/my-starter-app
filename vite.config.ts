@@ -54,7 +54,7 @@ export default defineConfig({
             },
           },
           {
-            // @ts-ignore
+            // @ts-expect-error self is defined in service worker context
             urlPattern: ({ url }) => url.origin !== self.location.origin, // Cache third-party assets (e.g., Google Fonts, CDN)
             handler: 'CacheFirst', // Prioritize cache for these assets
             options: {
@@ -84,6 +84,38 @@ export default defineConfig({
   resolve: {
     alias: {
       '@': path.resolve(__dirname, './src'),
+    },
+  },
+  build: {
+    sourcemap: false, // Set to true for debugging production builds, but increases bundle size
+    rollupOptions: {
+      output: {
+        manualChunks: {
+          'react-vendor': ['react', 'react-dom', 'react-router-dom'],
+          'ui-components': [
+            '@radix-ui/react-avatar',
+            '@radix-ui/react-dropdown-menu',
+            '@radix-ui/react-dialog',
+            '@radix-ui/react-label',
+            '@radix-ui/react-slot',
+            'class-variance-authority',
+            'clsx',
+            'tailwind-merge',
+          ],
+          'data-management': [
+            '@tanstack/react-query',
+            '@tanstack/react-table',
+            '@tanstack/react-form',
+            'zustand',
+          ],
+          utils: ['date-fns', 'dayjs', 'zod', 'lucide-react'],
+          i18n: ['i18next', 'react-i18next'],
+        },
+        // Better chunk naming pattern
+        chunkFileNames: 'assets/[name]-[hash].js',
+        entryFileNames: 'assets/[name]-[hash].js',
+        assetFileNames: 'assets/[name]-[hash].[ext]',
+      },
     },
   },
 });
